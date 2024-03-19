@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejemplo JavaScript con condiciones, arrays, while, switch y pop()</title>
+</head>
+<body>
+
+<button id="miBoton">Mostrar Resultados</button>
+
+<script>
+  // Array de nombres
+  let nombres = ['Juan', 'María', 'Carlos', 'Ana', 'Luis'];
+
+  // Función para generar un número aleatorio entre 0 y 10
+  function generarNumeroAleatorio() {
+    return Math.floor(Math.random() * 11);
+  }
+
+  // Función para obtener un mensaje según el resultado
+  function obtenerMensaje(resultado) {
+    let mensaje;
+
+    // Usando switch para manejar diferentes casos
+    switch(resultado) {
+      case 0:
+        mensaje = "¡Excelente!"; 
+        break;
+      case 1:
+      case 2:
+      case 3:
+        mensaje = "¡Buen trabajo!";
+        break;
+      case 4:
+      case 5:
+      case 6:
+        mensaje = "¡Puedes mejorar!";
+        break;
+      default:
+        mensaje = "¡Sigue intentando!";
+        break;
+    }
+
+    return mensaje;
+  }
+
+  // Función principal que se ejecuta al hacer clic en el botón
+  function mostrarResultados() {
+    let i = 0;
+    const resultados = [];
+
+    // Llenar el array con resultados aleatorios
+    while (i < nombres.length) {
+      resultados.push(generarNumeroAleatorio());
+      i++;
+    }
+
+    // Eliminar el último elemento del array de nombres
+    const ultimoNombreEliminado = nombres.pop();
+
+    // Mostrar resultados y mensajes correspondientes
+    for (let j = 0; j < nombres.length; j++) {
+      const resultado = resultados[j];
+      const mensaje = obtenerMensaje(resultado);
+      console.log(`${nombres[j]}: ${resultado} - ${mensaje}`);
+    }
+
+    console.log(`El último nombre eliminado fue: ${ultimoNombreEliminado}`);
+  }
+
+  // Añadir un evento de clic al botón
+  const boton = document.getElementById('miBoton');
+  boton.addEventListener('click', mostrarResultados);
+</script>
+
+</body>
+</html>
